@@ -1,0 +1,14 @@
+create topic:
+docker exec -it kafka1 kafka-topics --create --bootstrap-server kafka1:29092 --replication-factor 1 --partitions 1 --topic youtube-comments
+
+display consumed message in topic:
+docker exec -it kafka1 kafka-console-consumer --topic youtube-comments --bootstrap-server kafka1:29092
+
+delete topic:
+kafka-topics --bootstrap-server localhost:9092 --delete --topic youtube-comments
+
+start spark job:
+docker exec -it spark-master spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.2 /app/spark_jobs/youtube_sentiment_analyzer.py
+
+start crawling and pushing data into kafka
+docker exec -it kafka-producer python producer.py

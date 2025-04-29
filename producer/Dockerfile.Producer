@@ -1,0 +1,15 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Install required packages
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the source code
+COPY . .
+
+# CMD ["python", "-u", "producer.py"]
+# set for the terminal to stay up in the container
+
+CMD ["tail", "-f", "/dev/null"]
