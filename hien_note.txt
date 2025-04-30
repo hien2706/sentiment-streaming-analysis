@@ -10,5 +10,5 @@ kafka-topics --bootstrap-server localhost:9092 --delete --topic youtube-comments
 start spark job:
 docker exec -it spark-master spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.2 /app/spark_jobs/youtube_sentiment_analyzer.py
 
-start crawling and pushing data into kafka
+start crawling and pushing data into kafka:
 docker exec -it kafka-producer python producer.py
